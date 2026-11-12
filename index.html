@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listahan ng mga Pabango - Siquijor Danila Love Potion Reference</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #4a154b;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-box, .filter-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #7c2a83;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #7c2a83;
+            color: white;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        tr:hover {
+            background-color: #fcf4ff;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .badge-mist { background-color: #e91e63; }
+        .badge-local { background-color: #009688; }
+        .badge-luxury { background-color: #673ab7; }
+
+        .price {
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .disclaimer {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #fff8e1;
+            border-left: 5px solid #ffb300;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #5d4037;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Listahan ng mga Pabango, Colognes, at Body Mists</h1>
+    <p class="subtitle">Gabay sa mga Sikat na Brands, Scents, Presyo, at Lugar kung Saan Nabibili</p>
+
+    <div class="controls">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Mag-search ng brand, scent, o lugar (hal. SM Manila, Shopee, Sauvage)...">
+        </div>
+        <div class="filter-box">
+            <select id="categoryFilter">
+                <option value="ALL">Lahat ng Kategorya</option>
+                <option value="Body Mists at Colognes">Body Mists at Colognes (Presko & Daily)</option>
+                <option value="Local Inspired Perfumes">Local Inspired Perfumes (EDP)</option>
+                <option value="Designer at Luxury Perfumes">Designer at Luxury Perfumes</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table id="perfumeTable">
+            <thead>
+                <tr>
+                    <th>Kategorya</th>
+                    <th>Brand</th>
+                    <th>Mga Sikat na Scents</th>
+                    <th>Tinatayang Presyo</th>
+                    <th>Saan Mabibili (Face-to-Face)</th>
+                    <th>Saan Mabibili (Online)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Populated via JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="disclaimer">
+        <strong>Paalala:</strong> Ang mga presyo ay tinatayang retail price sa Pilipinas at maaaring magbago depende sa sales at vouchers. Mas mainam na mag-test muna ng 1-2 scents sa balat at iwasang paghalu-haluin ang iba't ibang kemikal sa iisang lalagyan upang maiwasan ang iritasyon.
+    </div>
+</div>
+
+<script>
+    const perfumeData = [
+        // 1. Body Mists at Colognes
+        { category: "Body Mists at Colognes", brand: "Bath & Body Works", scents: "Gingham, A Thousand Wishes, Japanese Cherry Blossom, Into the Night, In the Stars, Champagne Toast, Warm Vanilla Sugar, Pure Wonder, Dark Kiss, Sweet Pea", price: "₱600 – ₱1,650 (236ml full size)", f2f: "Bath & Body Works Boutiques (SM Megamall, SM MOA, SM North EDSA, Robinsons Place Manila)", online: "Bath & Body Works PH Website, TikTok Shop, Shopee, Lazada" },
+        { category: "Body Mists at Colognes", brand: "Victoria’s Secret", scents: "Pure Seduction, Love Spell, Velvet Petals, Bare Vanilla, Coconut Passion, Aqua Kiss, Bombshell (mist), Tease (mist)", price: "₱1,199 – ₱2,399 (250ml full size)", f2f: "Victoria's Secret Beauty & Accessories (SM MOA, SM Megamall, Robinsons Place Manila)", online: "Perfumes.com.ph, Zalora, TikTok Shop (verified resellers), Shopee, Lazada" },
+        { category: "Body Mists at Colognes", brand: "Bench", scents: "Daily Scent (Spring Break, Happy Hour, Lazy Afternoon, Sunday Morning), Bambi, Atlantis, Tickled Pink, SO In Love, Popsicle, Eight, Bratsplash", price: "₱49 – ₱120 (75ml–125ml) / ₱150 – ₱350 (EDT)", f2f: "Bench Boutiques (SM City Manila), SM Department Store, Watsons", online: "Bench Official Website, TikTok Shop, Shopee, Lazada" },
+        { category: "Body Mists at Colognes", brand: "Penshoppe", scents: "Denimlove, Fruit Pop, Elements, Signature, Tokyo, Breathe", price: "₱89 – ₱199 (60ml–150ml) / ₱299 – ₱479 (EDT)", f2f: "Penshoppe Boutiques (SM City Manila), SM Department Store", online: "Penshoppe.com, TikTok Shop, Shopee, Lazada" },
+        { category: "Body Mists at Colognes", brand: "Oxygn (OXGN)", scents: "11:55, Nocturne, Gasoline (G.A.S.), Rich", price: "₱169 – ₱199 (body spray) / ₱399 – ₱449 (50ml EDT)", f2f: "OXGN Boutiques (SM City Manila), Watsons", online: "Zalora, TikTok Shop, Shopee, Lazada, Watsons Online" },
+        { category: "Body Mists at Colognes", brand: "Aficionado", scents: "F1, F2, F35, F68, F70, F77", price: "₱180 (30ml) | ₱270 (60ml) | ₱320 (85ml EDP)", f2f: "Aficionado Kiosks (SM City Manila at iba pang SM Malls)", online: "Aficionado.com.ph, TikTok Shop, Shopee, Lazada" },
+        { category: "Body Mists at Colognes", brand: "Christine Lhuillier Parfumerie", scents: "Baby Powder, Fresh Bamboo, Vanilla, Green Tea, White Musk", price: "₱130 – ₱480 (colognes/EDT) | ₱260 (body oil mist) | ₱1,000 (100ml EDP)", f2f: "L'Atelier de Christine Lhuillier Kiosks (SM City Manila / SM Malls)", online: "AtelierChristineLhuillier.com, TikTok Shop, Shopee, Lazada" },
+        { category: "Body Mists at Colognes", brand: "Juicy Cologne / Bambini / Lewis & Pearl", scents: "Icy Cool, Sweet Angel, Ocean Breeze, Morning Dew, Starry Night", price: "₱40 – ₱120 (50ml–125ml)", f2f: "Watsons (SM City Manila), SM Supermarket / Department Store, Drugstores", online: "Watsons Online, TikTok Shop, Shopee, Lazada" },
+
+        // 2. Local Inspired Perfumes
+        { category: "Local Inspired Perfumes", brand: "Ian Darcy", scents: "Inspired by Cool Water, Sweet Like Candy, Eclat, Sauvage, 1 Million", price: "₱400 – ₱500 (100ml Oil-Rich EDP) | ₱100 – ₱200 (Little Darcy)", f2f: "Ian Darcy Kiosks (SM City Manila at mga SM Malls)", online: "TikTok Shop, Shopee, Lazada" },
+        { category: "Local Inspired Perfumes", brand: "Prescripto", scents: "Rx2, Rx15, Rx22, Rx45", price: "₱200 – ₱350 (depende sa size at refill)", f2f: "Prescripto Kiosks (Isetann Recto, Robinsons, at piling SM Malls)", online: "TikTok Shop, Shopee, Lazada" },
+        { category: "Local Inspired Perfumes", brand: "Scent Swatch", scents: "Amethyst, Orange, Peach, Rose, Blue", price: "₱250 – ₱400 (30ml–60ml EDP)", f2f: "Scent Swatch Kiosks sa piling malls", online: "TikTok Shop, Shopee, Lazada" },
+        { category: "Local Inspired Perfumes", brand: "Symmetry Lab", scents: "Ecstatic, Good Girl, Santal", price: "₱350 – ₱650 (50ml EDP)", f2f: "Piling pop-up stores sa Metro Manila", online: "TikTok Shop, Shopee, Lazada" },
+
+        // 3. Designer at Luxury Perfumes
+        { category: "Designer at Luxury Perfumes", brand: "Clinique", scents: "Clinique Happy, Clinique Happy Heart", price: "₱4,295 – ₱4,500 (100ml)", f2f: "SM Department Store Beauty Section (SM Manila / Makati / MOA), Rustan's", online: "Zalora, Perfumes.com.ph, Lazada (LazMall)" },
+        { category: "Designer at Luxury Perfumes", brand: "Elizabeth Arden", scents: "Green Tea, White Tea", price: "₱995 – ₱1,499 (236ml mist) | ₱2,195 – ₱4,000 (100ml EDT/EDP)", f2f: "SM Department Store Beauty Section, Watsons (selected branches)", online: "Zalora, Perfumes.com.ph, Shopee/Lazada Official Stores" },
+        { category: "Designer at Luxury Perfumes", brand: "Davidoff", scents: "Cool Water (Men & Women)", price: "₱3,495 – ₱4,595 (125ml)", f2f: "SM Department Store Beauty Section", online: "Zalora, Perfumes.com.ph, Shopee, Lazada" },
+        { category: "Designer at Luxury Perfumes", brand: "Calvin Klein (CK)", scents: "CK One, CK Be, Eternity", price: "₱2,995 – ₱3,895 (100ml) | ₱3,495 – ₱5,098 (200ml)", f2f: "SM Department Store Beauty Section", online: "Zalora, Perfumes.com.ph, Lazada" },
+        { category: "Designer at Luxury Perfumes", brand: "Bvlgari", scents: "Omnia Amethyste, Omnia Crystalline, Bvlgari Extreme", price: "₱7,495 – ₱10,045 (100ml)", f2f: "SM Department Store Beauty Section, Rustan's", online: "Zalora, Perfumes.com.ph" },
+        { category: "Designer at Luxury Perfumes", brand: "Versace", scents: "Bright Crystal, Eros, Dylan Blue", price: "₱3,019 – ₱3,774 (30ml) | ₱5,268 – ₱8,800 (90ml–100ml)", f2f: "SM Department Store Beauty Section, Rustan's", online: "Zalora, Perfumes.com.ph" },
+        { category: "Designer at Luxury Perfumes", brand: "Lanvin", scents: "Éclat d'Arpège", price: "₱3,995 – ₱5,450 (100ml)", f2f: "SM Department Store Beauty Section", online: "Zalora, Perfumes.com.ph" },
+        { category: "Designer at Luxury Perfumes", brand: "Dolce & Gabbana", scents: "Light Blue", price: "₱4,500 – ₱7,500 (50ml–100ml)", f2f: "SM Department Store Beauty Section, Rustan's", online: "Zalora, Perfumes.com.ph" },
+        { category: "Designer at Luxury Perfumes", brand: "Ariana Grande", scents: "Cloud, Sweet Like Candy", price: "₱3,500 – ₱5,500 (50ml–100ml)", f2f: "SM Department Store Beauty Section (selected branches)", online: "Zalora, Perfumes.com.ph, Shopee/Lazada (verified stores)" },
+        { category: "Designer at Luxury Perfumes", brand: "Dior", scents: "Dior Sauvage, Miss Dior", price: "₱6,792 – ₱11,730 (50ml–100ml)", f2f: "Dior Beauty Boutiques (SM Makati, SM MOA, Greenbelt), Rustan's", online: "Zalora, Rustans.com" },
+        { category: "Designer at Luxury Perfumes", brand: "Jo Malone London", scents: "English Pear & Freesia, Wood Sage & Sea Salt", price: "₱4,440 – ₱5,841 (30ml) | ₱8,500 – ₱10,500 (100ml)", f2f: "Jo Malone Boutiques (SM Aura, Greenbelt, Power Plant Mall), Rustan's", online: "Zalora, Rustans.com, Lazada (LazMall)" }
+    ];
+
+    function getBadgeClass(category) {
+        if (category.includes("Body Mists")) return "badge-mist";
+        if (category.includes("Local Inspired")) return "badge-local";
+        return "badge-luxury";
+    }
+
+    function renderTable(data) {
+        const tbody = document.querySelector("#perfumeTable tbody");
+        tbody.innerHTML = "";
+
+        if(data.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 20px;">Walang nahanap na me-match sa search o filter.</td></tr>`;
+            return;
+        }
+
+        data.forEach(item => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td><span class="badge ${getBadgeClass(item.category)}">${item.category}</span></td>
+                <td><strong>${item.brand}</strong></td>
+                <td>${item.scents}</td>
+                <td class="price">${item.price}</td>
+                <td>${item.f2f}</td>
+                <td>${item.online}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function filterData() {
+        const searchText = document.getElementById("searchInput").value.toLowerCase();
+        const selectedCategory = document.getElementById("categoryFilter").value;
+
+        const filtered = perfumeData.filter(item => {
+            const matchesCategory = selectedCategory === "ALL" || item.category === selectedCategory;
+            
+            const matchesSearch = 
+                item.brand.toLowerCase().includes(searchText) ||
+                item.scents.toLowerCase().includes(searchText) ||
+                item.f2f.toLowerCase().includes(searchText) ||
+                item.online.toLowerCase().includes(searchText) ||
+                item.price.toLowerCase().includes(searchText);
+
+            return matchesCategory && matchesSearch;
+        });
+
+        renderTable(filtered);
+    }
+
+    document.getElementById("searchInput").addEventListener("input", filterData);
+    document.getElementById("categoryFilter").addEventListener("change", filterData);
+
+    // Initial render
+    renderTable(perfumeData);
+</script>
+
+</body>
+</html>
